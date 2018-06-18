@@ -1,0 +1,25 @@
+require 'faker'
+
+task :console do
+  exec "irb -r./app.rb"
+end
+
+namespace :db do
+  task :seed do
+    require_relative 'app'
+
+    #TODO: how would you seed the database?
+  end
+
+  task :setup do
+    require_relative 'app.rb'
+
+    print "Creating database at #{Database::Model.filename}..."
+
+    Database::Model.execute(<<-SQL)
+      #TODO: SQL to create table
+    SQL
+
+    puts "done"
+  end
+end
